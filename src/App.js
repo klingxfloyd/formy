@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { 
   CssBaseline, Container, Typography, TextField, Button, Paper, 
   Snackbar, CircularProgress, Box, AppBar, Toolbar
@@ -113,16 +114,19 @@ function App() {
             Generate Your Form
           </Typography>
           <form onSubmit={handleSubmit}>
-            <TextField
-              fullWidth
-              label="Describe your form"
-              variant="outlined"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              margin="normal"
-              multiline
-              rows={4}
-            />
+          <FormControl component="fieldset" margin="normal">
+              <FormLabel component="legend">Describe your form</FormLabel>
+              <RadioGroup
+                aria-label="description"
+                name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              >
+                <FormControlLabel value="School" control={<Radio />} label="School" />
+                <FormControlLabel value="Office" control={<Radio />} label="Office" />
+                <FormControlLabel value="Freelance" control={<Radio />} label="Freelance" />
+              </RadioGroup>
+            </FormControl>
             <Box sx={{ mt: 2, position: 'relative' }}>
               <Button 
                 type="submit" 
